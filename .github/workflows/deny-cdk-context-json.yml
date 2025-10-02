@@ -6,7 +6,7 @@ on:
 
 jobs:
   check-cdk-context:
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Check for cdk.context.json

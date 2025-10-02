@@ -1,18 +1,12 @@
 name: GitHub Pages
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - '*.md'
-      - 'docs/**'
+on: push
 permissions:
   contents: write
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Configure Git Credentials

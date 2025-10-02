@@ -3,18 +3,12 @@
 
 name: Browser Extension CI
 
-on:
-  push:
-    branches: ['main']
-    paths: ['browser-extension/**']
-  pull_request:
-    branches: ['main']
-    paths: ['browser-extension/**']
+on: push
 
 jobs:
   check-lint-build:
     name: 'Check lint and build'
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
 
     strategy:
       matrix:

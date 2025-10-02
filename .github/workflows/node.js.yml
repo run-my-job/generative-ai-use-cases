@@ -3,18 +3,12 @@
 
 name: Node.js(Web + CDK) CI
 
-on:
-  push:
-    branches: ['main']
-    paths-ignore: ['browser-extension/**']
-  pull_request:
-    branches: ['main']
-    paths-ignore: ['browser-extension/**']
+on: push
 
 jobs:
   check-lint-build:
     name: 'Check test, lint and build'
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
 
     strategy:
       matrix:

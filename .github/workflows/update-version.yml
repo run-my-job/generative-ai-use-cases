@@ -9,7 +9,7 @@ on:
 jobs:
   update-version:
     if: github.event.workflow_run.conclusion == 'success'
-    runs-on: ubuntu-latest
+    runs-on: puzl-ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
@@ -59,16 +59,19 @@ jobs:
           fi
 
       - name: Update package.json version
-        if: fromJSON(steps.get-version.outputs.result).version != '' && steps.check-version.outputs.versions_match != 'true'
+        if: fromJSON(steps.get-version.outputs.result).version != '' && 
+          steps.check-version.outputs.versions_match != 'true'
         run: |
           VERSION="${{ fromJSON(steps.get-version.outputs.result).version }}"
           npm version $VERSION --no-git-tag-version
 
       - name: Create Pull Request
-        if: fromJSON(steps.get-version.outputs.result).version != '' && steps.check-version.outputs.versions_match != 'true'
+        if: fromJSON(steps.get-version.outputs.result).version != '' && 
+          steps.check-version.outputs.versions_match != 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: 'v${{ fromJSON(steps.get-version.outputs.result).version }}'
+          commit-message: 'v${{ fromJSON(steps.get-version.outputs.result).version
+            }}'
           title: 'v${{ fromJSON(steps.get-version.outputs.result).version }}'
           body: |
             New release: ${{ fromJSON(steps.get-version.outputs.result).html_url }}
